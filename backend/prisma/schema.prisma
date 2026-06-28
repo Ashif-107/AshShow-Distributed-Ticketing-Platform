@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String?
+  duration    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  shows       Show[]
+}
+
+model Show {
+  id        String    @id @default(cuid())
+  eventId   String
+  venue     String
+  startTime DateTime
+  price     Float
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+  seats     Seat[]
+  event     Event     @relation(fields: [eventId], references: [id])
+}
+
+model Seat {
+  id         String     @id @default(cuid())
+  showId     String
+  seatNumber String
+  status     SeatStatus @default(AVAILABLE)
+  booking    Booking?
+  show       Show       @relation(fields: [showId], references: [id], onDelete: Cascade)
+
+  @@unique([showId, seatNumber])
+}
+
+model Booking {
+  id       String   @id @default(cuid())
+  userId   String
+  showId   String
+  seatId   String   @unique
+  bookedAt DateTime @default(now())
+  seat     Seat     @relation(fields: [seatId], references: [id])
+  show     Show     @relation(fields: [showId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+enum SeatStatus {
+  AVAILABLE
+  BOOKED
+}
