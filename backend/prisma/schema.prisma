@@ -18,12 +18,13 @@ model User {
 
 model Event {
   id          String   @id @default(cuid())
-  title       String
   description String?
   imageUrl    String?
-  duration    Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  artist      String
+  genre       String?
+  tourName    String
   shows       Show[]
 }
 
@@ -32,7 +33,7 @@ model Show {
   eventId   String
   venue     String
   startTime DateTime
-  price     Float
+  price     Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   bookings  Booking[]
