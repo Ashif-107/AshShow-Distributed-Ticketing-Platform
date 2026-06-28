@@ -6,7 +6,7 @@ const events = [
     tourName: "Ultraviolence Tour",
     genre: "Alternative Pop",
     imageUrl:
-      "https://images.unsplash.com/photo-1501386761578-eac5c94b800",
+      "https://images.unsplash.com/photo-1711808688094-4873349ec56f",
     description: "Experience Lana Del Rey live."
   },
 
