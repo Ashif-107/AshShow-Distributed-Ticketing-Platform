@@ -46,3 +46,56 @@ export async function getAllEvents() {
       : null,
   }));
 }
+
+
+export async function getEventById(eventId: string) {
+  const event = await prisma.event.findUnique({
+    where: {
+      id: eventId,
+    },
+
+    include: {
+      shows: {
+        orderBy: {
+          startTime: "asc",
+        },
+
+        select: {
+          id: true,
+          venue: true,
+          price: true,
+          startTime: true,
+
+          _count: {
+            select: {
+              seats: {
+                where: {
+                  status: "AVAILABLE",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!event) return null;
+
+  return {
+    id: event.id,
+    artist: event.artist,
+    tourName: event.tourName,
+    imageUrl: event.imageUrl,
+    genre: event.genre,
+    description: event.description,
+
+    shows: event.shows.map((show) => ({
+      id: show.id,
+      venue: show.venue,
+      price: show.price,
+      startTime: show.startTime,
+      availableSeats: show._count.seats,
+    })),
+  };
+}
