@@ -56,3 +56,61 @@ export async function getSeats(showId: string){
   return res.json();
   
 }
+
+
+export async function login(email: string, password: string) {
+  const res = await fetch(`${API_BASE_URL}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Login failed");
+  }
+
+  return res.json();
+}
+
+export async function signup(name: string, email: string, password: string) {
+  const res = await fetch(`${API_BASE_URL}/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Signup failed");
+  }
+
+  return res.json();
+}
+
+export async function logout() {
+  const res = await fetch(`${API_BASE_URL}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error("Logout failed");
+  }
+
+  return res.json();
+}
+
+export async function getMe() {
+  const res = await fetch(`${API_BASE_URL}/auth/me`, {
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error("Not authenticated");
+  }
+
+  return res.json();
+}

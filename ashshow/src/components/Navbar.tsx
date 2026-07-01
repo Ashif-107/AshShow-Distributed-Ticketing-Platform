@@ -1,6 +1,11 @@
-import Link from "next/link"
+"use client";
+
+import Link from "next/link";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
   return (
     <div className="border-b-4 border-black bg-yellow-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -16,22 +21,39 @@ const Navbar = () => {
           >
             Book
           </Link>
-          <Link
-            href="/my-tickets"
-            className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
-          >
-            My Tickets
-          </Link>
-          <Link
-            href="/profile"
-            className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
-          >
-            Profile
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/my-tickets"
+                className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
+              >
+                My Tickets
+              </Link>
+              <Link
+                href="/profile"
+                className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
+              >
+                {user.name}
+              </Link>
+              <button
+                onClick={logout}
+                className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
