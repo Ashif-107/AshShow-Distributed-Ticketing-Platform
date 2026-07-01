@@ -3,6 +3,8 @@ import cors from "cors"
 
 import eventRoutes from "./routes/event.route";
 import showRoutes from "./routes/show.route"
+import { errorHandler } from "./middleware/error.middleware";
+
 
 const app = express()
 app.use(cors())
@@ -18,4 +20,5 @@ app.get("/health", (req,res) => {
 app.use("/events", eventRoutes)
 app.use("/shows", showRoutes)
 
+app.use(errorHandler);
 export default app
