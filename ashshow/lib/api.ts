@@ -13,7 +13,7 @@ export async function getEvents() {
 }
 
 export async function getEvent(eventId: string) {
-  
+
   const res = await fetch(`${API_BASE_URL}/events/${eventId}`, {
     cache: "no-store",
   })
@@ -25,4 +25,34 @@ export async function getEvent(eventId: string) {
   }
 
   return res.json();
+}
+
+export async function getShow(showId: string) {
+  const res = await fetch(`${API_BASE_URL}/shows/${showId}`, {
+    cache: "no-store"
+  })
+
+  if (!res.ok) {
+    const error = await res.json();
+
+    throw new Error(error.message || "Failed to fetch event details");
+  }
+
+  return res.json();
+}
+
+export async function getSeats(showId: string){
+  const res = await fetch(`${API_BASE_URL}/shows/${showId}/seats` , {
+    cache: "no-store"
+  })
+  
+  
+  if (!res.ok) {
+    const error = await res.json();
+
+    throw new Error(error.message || "Failed to fetch event details");
+  }
+
+  return res.json();
+  
 }

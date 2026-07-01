@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { getEvent } from "../../../../lib/api";
+import Link from "next/link";
 
 const cardBgColors = [
   "bg-yellow-300",
@@ -44,7 +45,8 @@ export default async function EventPage({
                 {event.shows.map((show: any, i: number) => {
                     const bg = cardBgColors[i % cardBgColors.length];
                     return (
-                        <div
+                        <Link
+                            href={`/book/${eventId}/${show.id}`}
                             key={show.id}
                             className={`${bg} border-4 border-black p-6 shadow-[8px_8px_0px_0px_black] transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_black]`}
                         >
@@ -63,7 +65,7 @@ export default async function EventPage({
                             <button className="mt-4 w-full border-4 border-black bg-white py-3 text-lg font-black uppercase tracking-wide transition-all hover:bg-black hover:text-white">
                                 Book Now
                             </button>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
