@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user  } = useAuth();
 
   return (
     <div className="border-b-4 border-black bg-yellow-300">
@@ -35,12 +35,7 @@ const Navbar = () => {
               >
                 {user.name}
               </Link>
-              <button
-                onClick={logout}
-                className="border-2 border-black bg-white px-4 py-2 text-sm font-black uppercase tracking-wide transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_black]"
-              >
-                Logout
-              </button>
+              
             </>
           ) : (
             <Link

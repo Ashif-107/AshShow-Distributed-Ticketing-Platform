@@ -20,9 +20,9 @@ Phase 1 — Basic Booking System (in progress)
 - Seats API: GET /shows/:showId/seats → { rows: [...] }
 - Neobrutalism theme applied across all pages
 - Seat selection interactivity (multi-select, summary, confirm button)
+- User Authentication with middleware and security measures done
 
 ## Currently Working On
-- User Authentication (signup/login JWT)
 - Booking endpoint (POST /bookings)
 
 ## Key Decisions Made
@@ -35,14 +35,8 @@ Phase 1 — Basic Booking System (in progress)
 
 ## Open / Known Issues
 - Seat sorting fixed (numeric sort within each row)
-- User model needs `password` field added (migration pending)
 
 ## Next Steps
-1. Add password field to User model + run migration
-2. Create auth routes (signup, login)
-3. Create auth middleware
-4. Create booking routes
-5. Create login/signup frontend pages
 6. Connect Confirm Booking → POST /bookings
 7. Build My Tickets page
 
