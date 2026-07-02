@@ -51,7 +51,7 @@ export default async function ShowPage({
             </div>
 
             <div className="mt-8">
-                <SeatSelector rows={seatMap.rows} price={show.price} />
+                <SeatSelector  showId={showId} rows={seatMap.rows} price={show.price} />
             </div>
         </div>
     );

@@ -41,12 +41,12 @@ export async function getShow(showId: string) {
   return res.json();
 }
 
-export async function getSeats(showId: string){
-  const res = await fetch(`${API_BASE_URL}/shows/${showId}/seats` , {
+export async function getSeats(showId: string) {
+  const res = await fetch(`${API_BASE_URL}/shows/${showId}/seats`, {
     cache: "no-store"
   })
-  
-  
+
+
   if (!res.ok) {
     const error = await res.json();
 
@@ -54,7 +54,7 @@ export async function getSeats(showId: string){
   }
 
   return res.json();
-  
+
 }
 
 
@@ -112,5 +112,34 @@ export async function getMe() {
     throw new Error("Not authenticated");
   }
 
+  return res.json();
+}
+
+export async function bookSeats(showId: string, seatIds: string[]) {
+  const res = await fetch(`${API_BASE_URL}/bookings`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ showId, seatIds }),
+    credentials: "include"
+
+  })
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Booking failed");
+  }
+
+  return res.json();
+}
+
+
+export async function getTickets() {
+  const res = await fetch(`${API_BASE_URL}/bookings/my`, {
+    credentials: "include", // Essential to send JWT cookies
+  });
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Failed to fetch tickets");
+  }
   return res.json();
 }

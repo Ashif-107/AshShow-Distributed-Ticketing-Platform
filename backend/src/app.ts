@@ -6,6 +6,7 @@ import helmet from "helmet";
 import eventRoutes from "./routes/event.route";
 import showRoutes from "./routes/show.route"
 import authRoutes from "./routes/auth.route";
+import bookingRoutes from "./routes/booking.route"
 
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -26,6 +27,7 @@ app.get("/health", (req,res) => {
 app.use("/auth", authRoutes);
 app.use("/events", eventRoutes)
 app.use("/shows", showRoutes)
+app.use("/bookings", bookingRoutes)
 
 app.use(errorHandler);
 
