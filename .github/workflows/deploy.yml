@@ -40,9 +40,8 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
         run: |
-          docker build \
-            --build-arg NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./ashshow
+          echo "API URL: $NEXT_PUBLIC_API_URL"
+          docker build --build-arg "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" ./ashshow
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
