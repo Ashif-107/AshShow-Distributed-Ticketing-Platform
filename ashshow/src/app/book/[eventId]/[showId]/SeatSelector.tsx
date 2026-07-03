@@ -16,20 +16,26 @@ export default function SeatSelector({
 }) {
 
     const router = useRouter();
+    const MAX_SELECTION = 5;
     const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
     const [isBooking, setIsBooking] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
 
     const toggleSeat = (seatId: string) => {
-        setSelectedSeats((prev) =>
-            prev.includes(seatId)
-                ? prev.filter((id) => id !== seatId)
-                : [...prev, seatId]
-        );
+        setError(null);
+        setSelectedSeats((prev) => {
+            if (prev.includes(seatId)) return prev.filter((id) => id !== seatId);
+            if (prev.length >= MAX_SELECTION) {
+                setError(`You can select at most ${MAX_SELECTION} seats`);
+                // do not add the seat
+                return prev;
+            }
+            return [...prev, seatId];
+        });
     };
 
-     const handleConfirmBooking = async () => {
+    const handleConfirmBooking = async () => {
         if (selectedSeats.length === 0) return;
         setIsBooking(true);
         setError(null);
@@ -51,7 +57,7 @@ export default function SeatSelector({
         .map((s) => s.seatNumber)
         .join(", ");
 
-     return (
+    return (
         <div className="border-4 border-black bg-cyan-300 p-8 shadow-[8px_8px_0px_0px_black]">
             <h3 className="text-center text-3xl font-black uppercase tracking-tight">
                 Select Your Seats
@@ -74,6 +80,7 @@ export default function SeatSelector({
                             }).map((seat) => {
                                 const isBooked = seat.status !== "AVAILABLE";
                                 const isSelected = selectedSeats.includes(seat.id);
+                                const disabledByLimit = !isSelected && selectedSeats.length >= MAX_SELECTION;
                                 let seatStyle =
                                     "border-2 border-black flex h-9 w-9 items-center justify-center text-xs font-bold transition-all";
                                 if (isBooked) {
@@ -81,6 +88,8 @@ export default function SeatSelector({
                                 } else if (isSelected) {
                                     seatStyle +=
                                         " bg-lime-300 shadow-[3px_3px_0px_0px_black] -translate-x-0.5 -translate-y-0.5";
+                                } else if (disabledByLimit) {
+                                    seatStyle += " bg-yellow-100 cursor-not-allowed opacity-80";
                                 } else {
                                     seatStyle +=
                                         " bg-white cursor-pointer hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_black]";
@@ -88,7 +97,7 @@ export default function SeatSelector({
                                 return (
                                     <button
                                         key={seat.id}
-                                        disabled={isBooked}
+                                        disabled={isBooked || disabledByLimit}
                                         onClick={() => toggleSeat(seat.id)}
                                         className={seatStyle}
                                     >
@@ -119,6 +128,11 @@ export default function SeatSelector({
                     ⚠️ {error}
                 </div>
             )}
+            {selectedSeats.length >= MAX_SELECTION && (
+                <div className="mx-auto mt-4 max-w-md rounded border-2 border-black bg-yellow-200 p-3 font-bold text-black">
+                    ⚠️ You have reached the maximum selection of {MAX_SELECTION} seats.
+                </div>
+            )}
             {selectedSeats.length > 0 && (
                 <div className="mx-auto mt-8 max-w-md border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_black]">
                     <p className="text-lg font-black uppercase">Booking Summary</p>
@@ -132,11 +146,10 @@ export default function SeatSelector({
                 <button
                     disabled={selectedSeats.length === 0 || isBooking}
                     onClick={handleConfirmBooking}
-                    className={`inline-block border-4 border-black px-16 py-5 text-2xl font-black uppercase tracking-wide shadow-[8px_8px_0px_0px_black] transition-all ${
-                        selectedSeats.length === 0 || isBooking
+                    className={`inline-block border-4 border-black px-16 py-5 text-2xl font-black uppercase tracking-wide shadow-[8px_8px_0px_0px_black] transition-all ${selectedSeats.length === 0 || isBooking
                             ? "cursor-not-allowed bg-gray-300 opacity-50"
                             : "bg-lime-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_black]"
-                    }`}
+                        }`}
                 >
                     {isBooking ? "Booking..." : "Confirm Booking"}
                 </button>

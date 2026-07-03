@@ -1,6 +1,10 @@
 import prisma from "../prisma/client";
 
 export async function bookingSeats(userId: string, showId: string, seatIds: string[]) {
+  // Protect against requests that bypass validation: cap seats per booking
+  if (seatIds.length > 5) {
+    throw new Error("Cannot book more than 5 tickets at once");
+  }
   return prisma.$transaction(async (tx) => {
     // 1. Attempt to update the status of the requested seats to BOOKED,
     // but only if they are currently AVAILABLE.

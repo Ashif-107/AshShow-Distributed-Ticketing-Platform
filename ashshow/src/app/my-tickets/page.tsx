@@ -33,12 +33,11 @@ export default function MyTicketsPage() {
     getTickets()
       .then((data) => {
         setTickets(data);
-        setLoading(false);
       })
       .catch((err) => {
         setError(err.message || "Failed to load your tickets.");
-        setLoading(false);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
