@@ -1,5 +1,10 @@
-const API_BASE_URL = "http://localhost:8000";
+const isServer = typeof window === "undefined";
 
+const API_BASE_URL = isServer
+  ? (process.env.INTERNAL_API_URL || "http://localhost:8000")
+  : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000");
+
+  
 export async function getEvents() {
   const res = await fetch(`${API_BASE_URL}/events`, {
     cache: "no-store",
