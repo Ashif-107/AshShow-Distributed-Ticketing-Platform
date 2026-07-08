@@ -148,3 +148,31 @@ export async function getTickets() {
   }
   return res.json();
 }
+
+export async function lockSeats(showId: string, seatIds: string[]) {
+  const res = await fetch(`${API_BASE_URL}/bookings/lock`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ showId, seatIds }),
+    credentials: "include",
+  });
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Failed to lock seats");
+  }
+  return res.json();
+}
+
+export async function confirmBooking(showId: string, seatIds: string[]) {
+  const res = await fetch(`${API_BASE_URL}/bookings/confirm`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ showId, seatIds }),
+    credentials: "include",
+  });
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Booking failed");
+  }
+  return res.json();
+}

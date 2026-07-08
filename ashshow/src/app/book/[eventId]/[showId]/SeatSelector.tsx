@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { bookSeats } from "../../../../../lib/api";
+import { bookSeats, lockSeats, confirmBooking } from "../../../../../lib/api";
 
 export default function SeatSelector({
     showId,
@@ -40,7 +41,10 @@ export default function SeatSelector({
         setIsBooking(true);
         setError(null);
         try {
-            await bookSeats(showId, selectedSeats);
+            // Step 1: Lock seats
+            await lockSeats(showId, selectedSeats);
+            // Step 2: Confirm booking (runs Prisma transaction)
+            await confirmBooking(showId, selectedSeats);
             router.push("/my-tickets");
         } catch (err: any) {
             setError(err.message || "Failed to complete the booking. Please try again.");
@@ -147,8 +151,8 @@ export default function SeatSelector({
                     disabled={selectedSeats.length === 0 || isBooking}
                     onClick={handleConfirmBooking}
                     className={`inline-block border-4 border-black px-16 py-5 text-2xl font-black uppercase tracking-wide shadow-[8px_8px_0px_0px_black] transition-all ${selectedSeats.length === 0 || isBooking
-                            ? "cursor-not-allowed bg-gray-300 opacity-50"
-                            : "bg-lime-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_black]"
+                        ? "cursor-not-allowed bg-gray-300 opacity-50"
+                        : "bg-lime-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_black]"
                         }`}
                 >
                     {isBooking ? "Booking..." : "Confirm Booking"}

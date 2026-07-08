@@ -1,4 +1,6 @@
 import prisma from "../prisma/client";
+import { invalidate } from "../redis/cache";
+
 
 export async function bookingSeats(userId: string, showId: string, seatIds: string[]) {
   // Protect against requests that bypass validation: cap seats per booking
@@ -54,6 +56,13 @@ export async function bookingSeats(userId: string, showId: string, seatIds: stri
           },
         })
       )
+    );
+    
+    // Invalidate caches after successful booking
+    await invalidate(
+      `cache:seats:${showId}`,
+      `cache:show:${showId}`,
+      "cache:events"
     );
 
     return bookings;

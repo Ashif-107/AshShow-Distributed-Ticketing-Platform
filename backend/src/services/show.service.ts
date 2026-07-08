@@ -1,96 +1,103 @@
 import prisma from "../prisma/client";
+import { getOrSet } from "../redis/cache";
+
 
 export async function getShowById(showId: string) {
-  return prisma.show.findUnique({
-    where: {
-      id: showId,
-    },
+  return getOrSet(`cache:show:${showId}`, async () => {
 
-    select: {
-      id: true,
-      venue: true,
-      price: true,
-      startTime: true,
+    return prisma.show.findUnique({
+      where: {
+        id: showId,
+      },
 
-      event: {
-        select: {
-          id: true,
-          artist: true,
-          tourName: true,
-          imageUrl: true,
-          genre: true,
+      select: {
+        id: true,
+        venue: true,
+        price: true,
+        startTime: true,
+
+        event: {
+          select: {
+            id: true,
+            artist: true,
+            tourName: true,
+            imageUrl: true,
+            genre: true,
+          },
         },
       },
-    },
-  });
+    });
+  }, 120);
 }
 
 
 export async function getSeatMap(showId: string) {
-  const show = await prisma.show.findUnique({
-    where: {
-      id: showId,
-    },
+  return getOrSet(`cache:seats:${showId}`, async () => {
+    const show = await prisma.show.findUnique({
+      where: {
+        id: showId,
+      },
 
-    select: {
-      id: true,
-      venue: true,
-      price: true,
-      startTime: true,
+      select: {
+        id: true,
+        venue: true,
+        price: true,
+        startTime: true,
 
-      seats: {
-        orderBy: {
-          seatNumber: "asc",
-        },
+        seats: {
+          orderBy: {
+            seatNumber: "asc",
+          },
 
-        select: {
-          id: true,
-          seatNumber: true,
-          status: true,
+          select: {
+            id: true,
+            seatNumber: true,
+            status: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  if (!show) return null;
+    if (!show) return null;
 
-  const groupedRows = new Map<
-    string,
-    {
-      row: string;
-      seats: {
-        id: string;
-        seatNumber: string;
-        status: string;
-      }[];
-    }
-  >();
+    const groupedRows = new Map<
+      string,
+      {
+        row: string;
+        seats: {
+          id: string;
+          seatNumber: string;
+          status: string;
+        }[];
+      }
+    >();
 
-  for (const seat of show.seats) {
-    const row = seat.seatNumber[0];
+    for (const seat of show.seats) {
+      const row = seat.seatNumber[0];
 
-    if (!groupedRows.has(row)) {
-      groupedRows.set(row, {
-        row,
-        seats: [],
+      if (!groupedRows.has(row)) {
+        groupedRows.set(row, {
+          row,
+          seats: [],
+        });
+      }
+
+      groupedRows.get(row)!.seats.push({
+        id: seat.id,
+        seatNumber: seat.seatNumber,
+        status: seat.status,
       });
     }
 
-    groupedRows.get(row)!.seats.push({
-      id: seat.id,
-      seatNumber: seat.seatNumber,
-      status: seat.status,
-    });
-  }
+    return {
+      show: {
+        id: show.id,
+        venue: show.venue,
+        price: show.price,
+        startTime: show.startTime,
+      },
 
-  return {
-    show: {
-      id: show.id,
-      venue: show.venue,
-      price: show.price,
-      startTime: show.startTime,
-    },
-
-    rows: Array.from(groupedRows.values()),
-  };
+      rows: Array.from(groupedRows.values()),
+    };
+  }, 30);
 }
