@@ -19,6 +19,19 @@ export async function lockSeatsHandler(req: Request, res: Response) {
   }
 }
 
+export async function unlockSeatsHandler(req: Request, res: Response) {
+  try {
+    const userId = req.user!.id;
+    const { seatIds } = req.body;
+
+    await unlockSeats(seatIds, userId);
+    return res.json({ unlocked: true });
+  } catch (err: any) {
+    console.error("Unlock error:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 
 export async function confirmBooking(req: Request, res: Response) {
   try {

@@ -1,53 +1,69 @@
 import redis from "./client";
 
 const LOCK_TTL = 300; // 5 minutes
+const UNLOCK_IF_OWNER_SCRIPT = `
+  if redis.call("GET", KEYS[1]) == ARGV[1] then
+    return redis.call("DEL", KEYS[1])
+  end
+  return 0
+`;
 
 export async function lockSeats(showId: string, seatIds: string[], userId: string) {
-  const multi = redis.multi();
+  void showId;
 
-  for (const seatId of seatIds) {
+  const uniqueSeatIds = [...new Set(seatIds)].sort();
+  const lockedByThisRequest: string[] = [];
+
+  for (const seatId of uniqueSeatIds) {
     const key = `lock:seat:${seatId}`;
-    multi.get(key);
-  }
+    const owner = await redis.get(key);
 
-  const results = await multi.exec();
-  if (!results) throw new Error("Failed to check locks");
-
-  for (let i = 0; i < seatIds.length; i++) {
-    const [, value] = results[i] as [Error | null, string | null];
-    if (value && value !== userId) {
-      throw new Error(`Seat ${seatIds[i]} is locked by another user`);
+    if (owner === userId) {
+      await redis.expire(key, LOCK_TTL);
+      continue;
     }
+
+    if (owner) {
+      await unlockSeats(lockedByThisRequest, userId);
+      throw new Error(`Seat ${seatId} is locked by another user`);
+    }
+
+    const result = await redis.set(key, userId, "EX", LOCK_TTL, "NX");
+    if (result !== "OK") {
+      await unlockSeats(lockedByThisRequest, userId);
+      throw new Error(`Seat ${seatId} is locked by another user`);
+    }
+
+    lockedByThisRequest.push(seatId);
   }
 
-  const setMulti = redis.multi();
-  for (const seatId of seatIds) {
-    setMulti.set(`lock:seat:${seatId}`, userId, "EX", LOCK_TTL);
-  }
-  await setMulti.exec();
-
-  // Track which seats the user has locked (for display / cleanup)
-  await redis.sadd(`lock:user:${userId}`, ...seatIds);
+  await redis.sadd(`lock:user:${userId}`, ...uniqueSeatIds);
   await redis.expire(`lock:user:${userId}`, LOCK_TTL);
 
   return { locked: true, expiresIn: LOCK_TTL };
 }
 
 export async function verifyLock(seatIds: string[], userId: string) {
-  for (const seatId of seatIds) {
+  for (const seatId of new Set(seatIds)) {
     const owner = await redis.get(`lock:seat:${seatId}`);
     if (owner !== userId) {
       return false;
     }
   }
+
   return true;
 }
 
 export async function unlockSeats(seatIds: string[], userId: string) {
+  const uniqueSeatIds = [...new Set(seatIds)];
+  if (uniqueSeatIds.length === 0) return;
+
   const multi = redis.multi();
-  for (const seatId of seatIds) {
-    multi.del(`lock:seat:${seatId}`);
+
+  for (const seatId of uniqueSeatIds) {
+    multi.eval(UNLOCK_IF_OWNER_SCRIPT, 1, `lock:seat:${seatId}`, userId);
   }
-  multi.srem(`lock:user:${userId}`, ...seatIds);
+
+  multi.srem(`lock:user:${userId}`, ...uniqueSeatIds);
   await multi.exec();
 }

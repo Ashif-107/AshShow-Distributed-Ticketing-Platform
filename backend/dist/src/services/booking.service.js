@@ -1,0 +1,100 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bookingSeats = bookingSeats;
+exports.getAllTickets = getAllTickets;
+const client_1 = __importDefault(require("../prisma/client"));
+const cache_1 = require("../redis/cache");
+async function bookingSeats(userId, showId, seatIds) {
+    // Protect against requests that bypass validation: cap seats per booking
+    if (seatIds.length > 5) {
+        throw new Error("Cannot book more than 5 tickets at once");
+    }
+    return client_1.default.$transaction(async (tx) => {
+        // 1. Attempt to update the status of the requested seats to BOOKED,
+        // but only if they are currently AVAILABLE.
+        const updated = await tx.seat.updateMany({
+            where: {
+                id: { in: seatIds },
+                showId: showId,
+                status: "AVAILABLE",
+            },
+            data: {
+                status: "BOOKED",
+            },
+        });
+        // 2. Concurrency check: If the number of successfully updated seats doesn't
+        // match the requested seat count, it means at least one seat was already booked
+        // by someone else (or does not exist). Rollback the transaction by throwing an error.
+        if (updated.count !== seatIds.length) {
+            throw new Error("One or more of the selected seats are no longer available");
+        }
+        // 3. Create the booking records for the user.
+        const bookings = await Promise.all(seatIds.map((seatId) => tx.booking.create({
+            data: {
+                userId,
+                showId,
+                seatId,
+            },
+            include: {
+                show: {
+                    select: {
+                        id: true,
+                        venue: true,
+                        startTime: true,
+                        price: true,
+                    },
+                },
+                seat: {
+                    select: {
+                        id: true,
+                        seatNumber: true,
+                        status: true,
+                    },
+                },
+            },
+        })));
+        // Invalidate caches after successful booking
+        await (0, cache_1.invalidate)(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
+        return bookings;
+    });
+}
+/**
+ * Retrieve all booking tickets for a user.
+ */
+async function getAllTickets(userId) {
+    return client_1.default.booking.findMany({
+        where: {
+            userId,
+        },
+        include: {
+            show: {
+                select: {
+                    id: true,
+                    venue: true,
+                    startTime: true,
+                    price: true,
+                    event: {
+                        select: {
+                            artist: true,
+                            tourName: true,
+                            genre: true,
+                        },
+                    },
+                },
+            },
+            seat: {
+                select: {
+                    id: true,
+                    seatNumber: true,
+                    status: true,
+                },
+            },
+        },
+        orderBy: {
+            bookedAt: "desc",
+        },
+    });
+}
