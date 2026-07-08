@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app_1 = __importDefault(require("./app"));
-const PORT = process.env.port || 8000;
+const PORT = process.env.PORT || 8000;
 const client_1 = __importDefault(require("./prisma/client"));
 async function connectDB() {
     try {

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { bookSeats, lockSeats, confirmBooking } from "../../../../../lib/api";
+import { lockSeats, unlockSeats, confirmBooking } from "../../../../../lib/api";
 
 export default function SeatSelector({
     showId,
@@ -40,13 +39,18 @@ export default function SeatSelector({
         if (selectedSeats.length === 0) return;
         setIsBooking(true);
         setError(null);
+        let lockAcquired = false;
         try {
             // Step 1: Lock seats
             await lockSeats(showId, selectedSeats);
+            lockAcquired = true;
             // Step 2: Confirm booking (runs Prisma transaction)
             await confirmBooking(showId, selectedSeats);
             router.push("/my-tickets");
         } catch (err: any) {
+            if (lockAcquired) {
+                await unlockSeats(showId, selectedSeats).catch(() => undefined);
+            }
             setError(err.message || "Failed to complete the booking. Please try again.");
         } finally {
             setIsBooking(false);

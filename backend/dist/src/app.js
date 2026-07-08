@@ -37,6 +37,11 @@ app.get("/api/health", (req, res) => {
         message: "Backend is Running"
     });
 });
+app.get("/health", (req, res) => {
+    res.json({
+        message: "Backend is Running"
+    });
+});
 app.use("/api/auth", auth_route_1.default);
 app.use("/api/events", event_route_1.default);
 app.use("/api/shows", show_route_1.default);

@@ -1,16 +1,16 @@
 # Graph Report - Distributed Ticketing Platform  (2026-07-08)
 
 ## Corpus Check
-- 65 files · ~40,431 words
+- 65 files · ~40,305 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 978 nodes · 1087 edges · 33 communities (17 shown, 16 thin omitted)
+- 977 nodes · 1094 edges · 32 communities (16 shown, 16 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ae560201`
+- Built from commit: `11ed32c5`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,7 +46,6 @@
 - next-env.d.ts
 - postcss.config.mjs
 - booking.schema.ts
-- booking.controller.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `BookingDelegate` - 18 edges
@@ -80,7 +79,7 @@
 - 3-file cycle: `backend/src/generated/prisma/internal/prismaNamespace.ts -> backend/src/generated/prisma/models.ts -> backend/src/generated/prisma/models/Show.ts -> backend/src/generated/prisma/internal/prismaNamespace.ts`
 - 3-file cycle: `backend/src/generated/prisma/internal/prismaNamespace.ts -> backend/src/generated/prisma/models.ts -> backend/src/generated/prisma/models/User.ts -> backend/src/generated/prisma/internal/prismaNamespace.ts`
 
-## Communities (33 total, 16 thin omitted)
+## Communities (32 total, 16 thin omitted)
 
 ### Community 0 - "prismaNamespace.ts"
 Cohesion: 0.02
@@ -115,8 +114,8 @@ Cohesion: 0.04
 Nodes (41): Booking, $Enums, Event, Seat, Show, User, DateTimeFilter, DateTimeWithAggregatesFilter (+33 more)
 
 ### Community 8 - "app.ts"
-Cohesion: 0.07
-Nodes (29): events, allowedOrigins, app, getEvent(), getEvents(), getSeats(), getShow(), Booking (+21 more)
+Cohesion: 0.12
+Nodes (25): allowedOrigins, bookSeats(), confirmBooking(), getTickets(), lockSeatsHandler(), getEvent(), getEvents(), getSeats() (+17 more)
 
 ### Community 9 - "auth.route.ts"
 Cohesion: 0.13
@@ -135,16 +134,12 @@ Cohesion: 0.10
 Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+11 more)
 
 ### Community 13 - "PrismaClient"
-Cohesion: 0.10
-Nodes (4): config, LogOptions, PrismaClient, PrismaClientConstructor
+Cohesion: 0.06
+Nodes (16): events, app, Booking, $Enums, Event, PrismaClient, Seat, Show (+8 more)
 
 ### Community 19 - "compilerOptions"
 Cohesion: 0.22
 Nodes (8): compilerOptions, esModuleInterop, module, outDir, rootDir, skipLibCheck, strict, target
-
-### Community 32 - "booking.controller.ts"
-Cohesion: 0.42
-Nodes (8): bookSeats(), confirmBooking(), getTickets(), lockSeatsHandler(), unlockSeatsHandler(), lockSeats(), unlockSeats(), verifyLock()
 
 ## Knowledge Gaps
 - **700 isolated node(s):** `name`, `version`, `description`, `main`, `dev` (+695 more)

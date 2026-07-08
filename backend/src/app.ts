@@ -39,6 +39,12 @@ app.get("/api/health", (req,res) => {
     })
 })
 
+app.get("/health", (req,res) => {
+    res.json({
+        message: "Backend is Running"
+    })
+})
+
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes)
 app.use("/api/shows", showRoutes)

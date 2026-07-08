@@ -163,6 +163,20 @@ export async function lockSeats(showId: string, seatIds: string[]) {
   return res.json();
 }
 
+export async function unlockSeats(showId: string, seatIds: string[]) {
+  const res = await fetch(`${API_BASE_URL}/bookings/unlock`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ showId, seatIds }),
+    credentials: "include",
+  });
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Failed to unlock seats");
+  }
+  return res.json();
+}
+
 export async function confirmBooking(showId: string, seatIds: string[]) {
   const res = await fetch(`${API_BASE_URL}/bookings/confirm`, {
     method: "POST",
