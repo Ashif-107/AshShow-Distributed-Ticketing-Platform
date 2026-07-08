@@ -4,134 +4,14 @@
   "graph": {},
   "nodes": [
     {
-      "label": "booking.controller.ts",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller",
-      "community": 32,
-      "norm_label": "booking.controller.ts"
-    },
-    {
-      "label": "lockSeatsHandler()",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller_lockseatshandler",
-      "community": 32,
-      "norm_label": "lockseatshandler()"
-    },
-    {
-      "label": "unlockSeatsHandler()",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller_unlockseatshandler",
-      "community": 32,
-      "norm_label": "unlockseatshandler()"
-    },
-    {
-      "label": "confirmBooking()",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L36",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller_confirmbooking",
-      "community": 32,
-      "norm_label": "confirmbooking()"
-    },
-    {
-      "label": "bookSeats()",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L63",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller_bookseats",
-      "community": 32,
-      "norm_label": "bookseats()"
-    },
-    {
-      "label": "getTickets()",
-      "file_type": "code",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L83",
-      "_origin": "ast",
-      "id": "backend_src_controllers_booking_controller_gettickets",
-      "community": 32,
-      "norm_label": "gettickets()"
-    },
-    {
-      "label": "lock.ts",
-      "file_type": "code",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "backend_src_redis_lock",
-      "community": 32,
-      "norm_label": "lock.ts"
-    },
-    {
-      "label": "lockSeats()",
-      "file_type": "code",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "backend_src_redis_lock_lockseats",
-      "community": 32,
-      "norm_label": "lockseats()"
-    },
-    {
-      "label": "verifyLock()",
-      "file_type": "code",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "backend_src_redis_lock_verifylock",
-      "community": 32,
-      "norm_label": "verifylock()"
-    },
-    {
-      "label": "unlockSeats()",
-      "file_type": "code",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "backend_src_redis_lock_unlockseats",
-      "community": 32,
-      "norm_label": "unlockseats()"
-    },
-    {
-      "label": "booking.route.ts",
-      "file_type": "code",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "backend_src_routes_booking_route",
-      "community": 32,
-      "norm_label": "booking.route.ts"
-    },
-    {
-      "label": "router",
-      "file_type": "code",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "backend_src_routes_booking_route_router",
-      "community": 8,
-      "norm_label": "router"
-    },
-    {
       "label": "api.ts",
       "file_type": "code",
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "ashshow_lib_api",
       "community": 6,
-      "norm_label": "api.ts",
-      "id": "ashshow_lib_api"
+      "norm_label": "api.ts"
     },
     {
       "label": "getEvents()",
@@ -139,9 +19,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L8",
       "_origin": "ast",
+      "id": "ashshow_lib_api_getevents",
       "community": 6,
-      "norm_label": "getevents()",
-      "id": "ashshow_lib_api_getevents"
+      "norm_label": "getevents()"
     },
     {
       "label": "getEvent()",
@@ -149,9 +29,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L20",
       "_origin": "ast",
+      "id": "ashshow_lib_api_getevent",
       "community": 6,
-      "norm_label": "getevent()",
-      "id": "ashshow_lib_api_getevent"
+      "norm_label": "getevent()"
     },
     {
       "label": "getShow()",
@@ -159,9 +39,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L35",
       "_origin": "ast",
+      "id": "ashshow_lib_api_getshow",
       "community": 6,
-      "norm_label": "getshow()",
-      "id": "ashshow_lib_api_getshow"
+      "norm_label": "getshow()"
     },
     {
       "label": "getSeats()",
@@ -169,9 +49,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L49",
       "_origin": "ast",
+      "id": "ashshow_lib_api_getseats",
       "community": 6,
-      "norm_label": "getseats()",
-      "id": "ashshow_lib_api_getseats"
+      "norm_label": "getseats()"
     },
     {
       "label": "login()",
@@ -179,9 +59,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L66",
       "_origin": "ast",
+      "id": "ashshow_lib_api_login",
       "community": 6,
-      "norm_label": "login()",
-      "id": "ashshow_lib_api_login"
+      "norm_label": "login()"
     },
     {
       "label": "signup()",
@@ -189,9 +69,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L82",
       "_origin": "ast",
+      "id": "ashshow_lib_api_signup",
       "community": 6,
-      "norm_label": "signup()",
-      "id": "ashshow_lib_api_signup"
+      "norm_label": "signup()"
     },
     {
       "label": "logout()",
@@ -199,9 +79,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L98",
       "_origin": "ast",
+      "id": "ashshow_lib_api_logout",
       "community": 6,
-      "norm_label": "logout()",
-      "id": "ashshow_lib_api_logout"
+      "norm_label": "logout()"
     },
     {
       "label": "getMe()",
@@ -209,9 +89,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L111",
       "_origin": "ast",
+      "id": "ashshow_lib_api_getme",
       "community": 6,
-      "norm_label": "getme()",
-      "id": "ashshow_lib_api_getme"
+      "norm_label": "getme()"
     },
     {
       "label": "bookSeats()",
@@ -219,9 +99,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L123",
       "_origin": "ast",
+      "id": "ashshow_lib_api_bookseats",
       "community": 6,
-      "norm_label": "bookseats()",
-      "id": "ashshow_lib_api_bookseats"
+      "norm_label": "bookseats()"
     },
     {
       "label": "getTickets()",
@@ -229,9 +109,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L141",
       "_origin": "ast",
+      "id": "ashshow_lib_api_gettickets",
       "community": 6,
-      "norm_label": "gettickets()",
-      "id": "ashshow_lib_api_gettickets"
+      "norm_label": "gettickets()"
     },
     {
       "label": "lockSeats()",
@@ -239,19 +119,29 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L152",
       "_origin": "ast",
+      "id": "ashshow_lib_api_lockseats",
       "community": 6,
-      "norm_label": "lockseats()",
-      "id": "ashshow_lib_api_lockseats"
+      "norm_label": "lockseats()"
+    },
+    {
+      "label": "unlockSeats()",
+      "file_type": "code",
+      "source_file": "ashshow/lib/api.ts",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "ashshow_lib_api_unlockseats",
+      "community": 6,
+      "norm_label": "unlockseats()"
     },
     {
       "label": "confirmBooking()",
       "file_type": "code",
       "source_file": "ashshow/lib/api.ts",
-      "source_location": "L166",
+      "source_location": "L180",
       "_origin": "ast",
+      "id": "ashshow_lib_api_confirmbooking",
       "community": 6,
-      "norm_label": "confirmbooking()",
-      "id": "ashshow_lib_api_confirmbooking"
+      "norm_label": "confirmbooking()"
     },
     {
       "label": "SeatSelector.tsx",
@@ -259,19 +149,189 @@
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "ashshow_src_app_book_eventid_showid_seatselector",
       "community": 6,
-      "norm_label": "seatselector.tsx",
-      "id": "ashshow_src_app_book_eventid_showid_seatselector"
+      "norm_label": "seatselector.tsx"
     },
     {
       "label": "SeatSelector()",
       "file_type": "code",
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L9",
+      "source_location": "L8",
       "_origin": "ast",
+      "id": "ashshow_src_app_book_eventid_showid_seatselector_seatselector",
       "community": 6,
-      "norm_label": "seatselector()",
-      "id": "ashshow_src_app_book_eventid_showid_seatselector_seatselector"
+      "norm_label": "seatselector()"
+    },
+    {
+      "label": "app.ts",
+      "file_type": "code",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_app",
+      "community": 33,
+      "norm_label": "app.ts"
+    },
+    {
+      "label": "app",
+      "file_type": "code",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "backend_src_app_app",
+      "community": 33,
+      "norm_label": "app"
+    },
+    {
+      "label": "allowedOrigins",
+      "file_type": "code",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "backend_src_app_allowedorigins",
+      "community": 33,
+      "norm_label": "allowedorigins"
+    },
+    {
+      "label": "server.ts",
+      "file_type": "code",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_server",
+      "community": 33,
+      "norm_label": "server.ts"
+    },
+    {
+      "label": "connectDB()",
+      "file_type": "code",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "backend_src_server_connectdb",
+      "community": 33,
+      "norm_label": "connectdb()"
+    },
+    {
+      "label": "booking.controller.ts",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "booking.controller.ts",
+      "id": "backend_src_controllers_booking_controller"
+    },
+    {
+      "label": "lockSeatsHandler()",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "lockseatshandler()",
+      "id": "backend_src_controllers_booking_controller_lockseatshandler"
+    },
+    {
+      "label": "unlockSeatsHandler()",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "unlockseatshandler()",
+      "id": "backend_src_controllers_booking_controller_unlockseatshandler"
+    },
+    {
+      "label": "confirmBooking()",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L36",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "confirmbooking()",
+      "id": "backend_src_controllers_booking_controller_confirmbooking"
+    },
+    {
+      "label": "bookSeats()",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L63",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "bookseats()",
+      "id": "backend_src_controllers_booking_controller_bookseats"
+    },
+    {
+      "label": "getTickets()",
+      "file_type": "code",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "gettickets()",
+      "id": "backend_src_controllers_booking_controller_gettickets"
+    },
+    {
+      "label": "lock.ts",
+      "file_type": "code",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "lock.ts",
+      "id": "backend_src_redis_lock"
+    },
+    {
+      "label": "lockSeats()",
+      "file_type": "code",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "lockseats()",
+      "id": "backend_src_redis_lock_lockseats"
+    },
+    {
+      "label": "verifyLock()",
+      "file_type": "code",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L46",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "verifylock()",
+      "id": "backend_src_redis_lock_verifylock"
+    },
+    {
+      "label": "unlockSeats()",
+      "file_type": "code",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L57",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "unlockseats()",
+      "id": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "label": "booking.route.ts",
+      "file_type": "code",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "booking.route.ts",
+      "id": "backend_src_routes_booking_route"
+    },
+    {
+      "label": "router",
+      "file_type": "code",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "router",
+      "id": "backend_src_routes_booking_route_router"
     },
     {
       "label": "package.json",
@@ -1699,7 +1759,7 @@
       "source_file": "backend/prisma/seed.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "seed.ts",
       "id": "backend_prisma_seed"
     },
@@ -1709,7 +1769,7 @@
       "source_file": "backend/prisma/seed.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "events",
       "id": "backend_prisma_seed_events"
     },
@@ -1719,39 +1779,9 @@
       "source_file": "backend/prisma/seed.ts",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "main()",
       "id": "backend_prisma_seed_main"
-    },
-    {
-      "label": "app.ts",
-      "file_type": "code",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "app.ts",
-      "id": "backend_src_app"
-    },
-    {
-      "label": "app",
-      "file_type": "code",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L14",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "app",
-      "id": "backend_src_app_app"
-    },
-    {
-      "label": "allowedOrigins",
-      "file_type": "code",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "allowedorigins",
-      "id": "backend_src_app_allowedorigins"
     },
     {
       "label": "auth.controller.ts",
@@ -1989,7 +2019,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "client.ts",
       "id": "backend_src_generated_prisma_client"
     },
@@ -1999,7 +2029,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "prismaclient",
       "id": "backend_src_generated_prisma_client_prismaclient"
     },
@@ -2009,7 +2039,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "user",
       "id": "backend_src_generated_prisma_client_user"
     },
@@ -2019,7 +2049,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "event",
       "id": "backend_src_generated_prisma_client_event"
     },
@@ -2029,7 +2059,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "show",
       "id": "backend_src_generated_prisma_client_show"
     },
@@ -2039,7 +2069,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "seat",
       "id": "backend_src_generated_prisma_client_seat"
     },
@@ -2049,7 +2079,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "booking",
       "id": "backend_src_generated_prisma_client_booking"
     },
@@ -9359,7 +9389,7 @@
       "source_file": "backend/src/middleware/error.middleware.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "error.middleware.ts",
       "id": "backend_src_middleware_error_middleware"
     },
@@ -9369,7 +9399,7 @@
       "source_file": "backend/src/middleware/error.middleware.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "errorhandler()",
       "id": "backend_src_middleware_error_middleware_errorhandler"
     },
@@ -9399,7 +9429,7 @@
       "source_file": "backend/src/prisma/client.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "client.ts",
       "id": "backend_src_prisma_client"
     },
@@ -9409,7 +9439,7 @@
       "source_file": "backend/src/prisma/client.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "pool",
       "id": "backend_src_prisma_client_pool"
     },
@@ -9419,7 +9449,7 @@
       "source_file": "backend/src/prisma/client.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "adapter",
       "id": "backend_src_prisma_client_adapter"
     },
@@ -9429,7 +9459,7 @@
       "source_file": "backend/src/prisma/client.ts",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "prisma",
       "id": "backend_src_prisma_client_prisma"
     },
@@ -9582,26 +9612,6 @@
       "community": 31,
       "norm_label": "createbookinginput",
       "id": "backend_src_schema_booking_schema_createbookinginput"
-    },
-    {
-      "label": "server.ts",
-      "file_type": "code",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "server.ts",
-      "id": "backend_src_server"
-    },
-    {
-      "label": "connectDB()",
-      "file_type": "code",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L10",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "connectdb()",
-      "id": "backend_src_server_connectdb"
     },
     {
       "label": "auth.service.ts",
@@ -9779,7 +9789,7 @@
       "source_file": "backend/src/generated/prisma/client.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 8,
+      "community": 13,
       "norm_label": "$enums",
       "id": "backend_src_generated_prisma_client_enums"
     }
@@ -9788,299 +9798,22 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L63",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_controllers_booking_controller_bookseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_controllers_booking_controller_confirmbooking",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L83",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_controllers_booking_controller_gettickets",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_controllers_booking_controller_lockseatshandler",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_controllers_booking_controller_unlockseatshandler",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_redis_lock",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_redis_lock_lockseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_redis_lock_unlockseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller",
-      "target": "backend_src_redis_lock_verifylock",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller_lockseatshandler",
-      "target": "backend_src_redis_lock_lockseats"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller_lockseatshandler",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller_unlockseatshandler",
-      "target": "backend_src_redis_lock_unlockseats"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller_unlockseatshandler",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L50",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller_confirmbooking",
-      "target": "backend_src_redis_lock_unlockseats"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "backend/src/controllers/booking.controller.ts",
-      "source_location": "L41",
-      "weight": 1.0,
-      "source": "backend_src_controllers_booking_controller_confirmbooking",
-      "target": "backend_src_redis_lock_verifylock"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller_confirmbooking",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller_bookseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_controllers_booking_controller_gettickets",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "backend_src_redis_lock",
-      "target": "backend_src_redis_lock_lockseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "backend_src_redis_lock",
-      "target": "backend_src_redis_lock_unlockseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "backend_src_redis_lock",
-      "target": "backend_src_redis_lock_verifylock",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/redis/lock.ts",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "backend_src_redis_lock_lockseats",
-      "target": "backend_src_redis_lock_unlockseats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_booking_route"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/routes/booking.route.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "backend_src_routes_booking_route",
-      "target": "backend_src_routes_booking_route_router",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_booking_route_router"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L123",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_bookseats"
+      "target": "ashshow_lib_api_bookseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ashshow/lib/api.ts",
-      "source_location": "L166",
+      "source_location": "L180",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_confirmbooking"
+      "target": "ashshow_lib_api_confirmbooking",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10088,9 +9821,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_getevent"
+      "target": "ashshow_lib_api_getevent",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10098,9 +9831,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_getevents"
+      "target": "ashshow_lib_api_getevents",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10108,9 +9841,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L111",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_getme"
+      "target": "ashshow_lib_api_getme",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10118,9 +9851,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_getseats"
+      "target": "ashshow_lib_api_getseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10128,9 +9861,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L35",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_getshow"
+      "target": "ashshow_lib_api_getshow",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10138,9 +9871,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L141",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_gettickets"
+      "target": "ashshow_lib_api_gettickets",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10148,9 +9881,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L152",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_lockseats"
+      "target": "ashshow_lib_api_lockseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10158,9 +9891,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L66",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_login"
+      "target": "ashshow_lib_api_login",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10168,9 +9901,9 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L98",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_logout"
+      "target": "ashshow_lib_api_logout",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10178,9 +9911,19 @@
       "source_file": "ashshow/lib/api.ts",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_lib_api",
-      "target": "ashshow_lib_api_signup"
+      "target": "ashshow_lib_api_signup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ashshow/lib/api.ts",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "ashshow_lib_api",
+      "target": "ashshow_lib_api_unlockseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -10209,11 +9952,11 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_src_app_book_eventid_showid_seatselector",
-      "target": "ashshow_lib_api"
+      "target": "ashshow_lib_api",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -10428,17 +10171,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ashshow_src_app_book_eventid_showid_seatselector",
-      "target": "ashshow_lib_api_bookseats"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "ashshow/src/app/my-tickets/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
@@ -10462,11 +10194,11 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_src_app_book_eventid_showid_seatselector",
-      "target": "ashshow_lib_api_lockseats"
+      "target": "ashshow_lib_api_lockseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -10484,11 +10216,11 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "ashshow_src_app_book_eventid_showid_seatselector",
-      "target": "ashshow_lib_api_confirmbooking"
+      "target": "ashshow_lib_api_unlockseats",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -10496,7 +10228,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L47",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "ashshow_src_app_book_eventid_showid_seatselector_seatselector",
+      "target": "ashshow_lib_api_unlockseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ashshow_src_app_book_eventid_showid_seatselector",
+      "target": "ashshow_lib_api_confirmbooking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "ashshow_src_app_book_eventid_showid_seatselector_seatselector",
       "target": "ashshow_lib_api_confirmbooking"
@@ -10516,11 +10270,318 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ashshow/src/app/book/[eventId]/[showId]/SeatSelector.tsx",
-      "source_location": "L9",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "ashshow_src_app_book_eventid_showid_seatselector",
+      "target": "ashshow_src_app_book_eventid_showid_seatselector_seatselector",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "backend_src_app",
+      "target": "backend_src_app_allowedorigins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_src_app",
+      "target": "backend_src_app_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "backend_src_server",
+      "target": "backend_src_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "backend_src_server",
+      "target": "backend_src_app_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_src_server",
+      "target": "backend_src_server_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L63",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "ashshow_src_app_book_eventid_showid_seatselector",
-      "target": "ashshow_src_app_book_eventid_showid_seatselector_seatselector"
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_controllers_booking_controller_bookseats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_controllers_booking_controller_confirmbooking"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_controllers_booking_controller_gettickets"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_controllers_booking_controller_lockseatshandler"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_controllers_booking_controller_unlockseatshandler"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_redis_lock"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_redis_lock_lockseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_controllers_booking_controller",
+      "target": "backend_src_redis_lock_verifylock"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "backend_src_controllers_booking_controller_lockseatshandler",
+      "target": "backend_src_redis_lock_lockseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller_lockseatshandler"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "backend_src_controllers_booking_controller_unlockseatshandler",
+      "target": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller_unlockseatshandler"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "backend_src_controllers_booking_controller_confirmbooking",
+      "target": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/controllers/booking.controller.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "backend_src_controllers_booking_controller_confirmbooking",
+      "target": "backend_src_redis_lock_verifylock"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller_confirmbooking"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller_bookseats"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_controllers_booking_controller_gettickets"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_redis_lock",
+      "target": "backend_src_redis_lock_lockseats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_redis_lock",
+      "target": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_redis_lock",
+      "target": "backend_src_redis_lock_verifylock"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/redis/lock.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_redis_lock_lockseats",
+      "target": "backend_src_redis_lock_unlockseats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/booking.route.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_src_routes_booking_route",
+      "target": "backend_src_routes_booking_route_router"
     },
     {
       "relation": "contains",
@@ -12172,136 +12233,6 @@
       "confidence_score": 1.0,
       "source": "backend_prisma_seed",
       "target": "backend_src_prisma_client_prisma"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_app_allowedorigins"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_app_app"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_middleware_error_middleware"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_middleware_error_middleware_errorhandler"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_auth_route"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_auth_route_router"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_event_route"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_event_route_router"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_show_route"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/app.ts",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_app",
-      "target": "backend_src_routes_show_route_router"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_server",
-      "target": "backend_src_app"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_server",
-      "target": "backend_src_app_app"
     },
     {
       "relation": "contains",
@@ -20504,34 +20435,12 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_server",
-      "target": "backend_src_prisma_client"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/auth.service.ts",
       "source_location": "L3",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "backend_src_services_auth_service",
       "target": "backend_src_prisma_client"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_server",
-      "target": "backend_src_prisma_client_prisma"
     },
     {
       "relation": "imports",
@@ -20680,16 +20589,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/src/server.ts",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "backend_src_server",
-      "target": "backend_src_server_connectdb"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/auth.service.ts",
       "source_location": "L41",
       "weight": 1.0,
@@ -20829,5 +20728,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ae5602012fa29e16ae17c84e33d36a04e11166c9"
+  "built_at_commit": "a4c54b87d29c7f5bce9d5329ce4fc25bc58f2234"
 }

@@ -31,5 +31,6 @@
   "29": "postcss.config.mjs",
   "30": "prisma.config.ts",
   "31": "booking.schema.ts",
-  "32": "booking.controller.ts"
+  "32": "booking.controller.ts",
+  "33": "app.ts"
 }

@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "backend/src/app.ts": {
-    "mtime": 1783084150.0077007,
-    "ast_hash": "d17de4c8e6812130cbdc23c1ce419b33",
+    "mtime": 1783528547.302812,
+    "ast_hash": "d8022b13a56ff467473b58d021a771d5",
     "semantic_hash": ""
   },
   "backend/src/controllers/auth.controller.ts": {
@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "backend/src/server.ts": {
-    "mtime": 1782984602.2079184,
-    "ast_hash": "1dd3dd956c50f7a941a457b8edf2984e",
+    "mtime": 1783528533.703276,
+    "ast_hash": "37e1da15d54bba3602121de15817e9ec",
     "semantic_hash": ""
   },
   "backend/src/services/auth.service.ts": {
@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "docker-compose.yml": {
-    "mtime": 1783521090.2246313,
-    "ast_hash": "d3e3f1c63ac9f372b9a7278a39442ba2",
+    "mtime": 1783529243.4991124,
+    "ast_hash": "a4b120067e5b23e24124d8dbe513d47c",
     "semantic_hash": ""
   },
   "backend/src/redis/cache.ts": {
