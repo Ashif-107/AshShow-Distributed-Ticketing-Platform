@@ -14,20 +14,35 @@ import { errorHandler } from "./middleware/error.middleware";
 const app = express()
 
 app.use(helmet());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+const allowedOrigins = [
+  "http://localhost:3000",
+  process.env.FRONTEND_URL
+].filter(Boolean) as string[];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/health", (req,res) => {
+app.get("/api/health", (req,res) => {
     res.json({
         message: "Backend is Running"
     })
 })
 
-app.use("/auth", authRoutes);
-app.use("/events", eventRoutes)
-app.use("/shows", showRoutes)
-app.use("/bookings", bookingRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/events", eventRoutes)
+app.use("/api/shows", showRoutes)
+app.use("/api/bookings", bookingRoutes)
 
 app.use(errorHandler);
 
