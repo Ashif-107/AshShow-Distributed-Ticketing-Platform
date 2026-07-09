@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { io } from "socket.io-client";
+
 import { useRouter } from "next/navigation";
 import { lockSeats, unlockSeats, confirmBooking } from "../../../../../lib/api";
 
@@ -20,6 +22,34 @@ export default function SeatSelector({
     const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
     const [isBooking, setIsBooking] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    const [seatStatusMap, setSeatStatusMap] = useState<Record<string, string>>(() => {
+        const map: Record<string, string> = {};
+        rows.forEach(r => r.seats.forEach(s => { map[s.id] = s.status; }));
+        return map;
+    });
+
+    useEffect(() => {
+        const socket = io("http://localhost:8000", { withCredentials: true });
+
+        socket.on("connect", () => {
+            socket.emit("join:show", showId);
+        });
+
+        socket.on("seat:locked", ({ seatId }: { seatId: string }) => {
+            setSeatStatusMap(prev => ({ ...prev, [seatId]: "LOCKED" }));
+        });
+
+        socket.on("seat:booked", ({ seatId }: { seatId: string }) => {
+            setSeatStatusMap(prev => ({ ...prev, [seatId]: "BOOKED" }));
+        });
+
+        socket.on("seat:available", ({ seatId }: { seatId: string }) => {
+            setSeatStatusMap(prev => ({ ...prev, [seatId]: "AVAILABLE" }));
+        });
+
+        return () => { socket.disconnect(); };
+    }, [showId]);
 
 
     const toggleSeat = (seatId: string) => {
@@ -86,12 +116,15 @@ export default function SeatSelector({
                                 const numB = parseInt(b.seatNumber.slice(1), 10);
                                 return numA - numB;
                             }).map((seat) => {
-                                const isBooked = seat.status !== "AVAILABLE";
+                                const status = seatStatusMap[seat.id] || seat.status;
+                                const isBooked = status !== "AVAILABLE";
                                 const isSelected = selectedSeats.includes(seat.id);
                                 const disabledByLimit = !isSelected && selectedSeats.length >= MAX_SELECTION;
                                 let seatStyle =
                                     "border-2 border-black flex h-9 w-9 items-center justify-center text-xs font-bold transition-all";
-                                if (isBooked) {
+                                if (status === "LOCKED") {
+                                    seatStyle += " cursor-not-allowed bg-orange-300 opacity-80";
+                                } else if (isBooked) {
                                     seatStyle += " cursor-not-allowed bg-gray-400 opacity-50";
                                 } else if (isSelected) {
                                     seatStyle +=
@@ -105,7 +138,7 @@ export default function SeatSelector({
                                 return (
                                     <button
                                         key={seat.id}
-                                        disabled={isBooked || disabledByLimit}
+                                        disabled={status !== "AVAILABLE" || disabledByLimit}
                                         onClick={() => toggleSeat(seat.id)}
                                         className={seatStyle}
                                     >
@@ -125,6 +158,10 @@ export default function SeatSelector({
                 <div className="flex items-center gap-2">
                     <div className="h-5 w-5 border-2 border-black bg-gray-400" />
                     Booked
+                </div>
+                <div className="flex items-center gap-2">         
+                    <div className="h-5 w-5 border-2 border-black bg-orange-300 opacity-80" />
+                    Locked
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="h-5 w-5 border-2 border-black bg-lime-300" />

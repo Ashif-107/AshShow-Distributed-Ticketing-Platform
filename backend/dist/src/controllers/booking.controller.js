@@ -26,8 +26,8 @@ async function lockSeatsHandler(req, res) {
 async function unlockSeatsHandler(req, res) {
     try {
         const userId = req.user.id;
-        const { seatIds } = req.body;
-        await (0, lock_1.unlockSeats)(seatIds, userId);
+        const { showId, seatIds } = req.body;
+        await (0, lock_1.unlockSeats)(seatIds, userId, showId);
         return res.json({ unlocked: true });
     }
     catch (err) {
@@ -46,7 +46,7 @@ async function confirmBooking(req, res) {
             });
         }
         const bookings = await (0, booking_service_1.bookingSeats)(userId, showId, seatIds);
-        await (0, lock_1.unlockSeats)(seatIds, userId);
+        await (0, lock_1.unlockSeats)(seatIds, userId, showId);
         await (0, cache_1.invalidate)(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
         return res.status(201).json({ bookings });
     }

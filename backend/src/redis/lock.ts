@@ -1,4 +1,5 @@
 import redis from "./client";
+import { publishSeatLocked, publishSeatAvailable } from "./pub";
 
 const LOCK_TTL = 300; // 5 minutes
 const UNLOCK_IF_OWNER_SCRIPT = `
@@ -9,8 +10,6 @@ const UNLOCK_IF_OWNER_SCRIPT = `
 `;
 
 export async function lockSeats(showId: string, seatIds: string[], userId: string) {
-  void showId;
-
   const uniqueSeatIds = [...new Set(seatIds)].sort();
   const lockedByThisRequest: string[] = [];
 
@@ -24,13 +23,13 @@ export async function lockSeats(showId: string, seatIds: string[], userId: strin
     }
 
     if (owner) {
-      await unlockSeats(lockedByThisRequest, userId);
+      await unlockSeats(lockedByThisRequest, userId, showId);
       throw new Error(`Seat ${seatId} is locked by another user`);
     }
 
     const result = await redis.set(key, userId, "EX", LOCK_TTL, "NX");
     if (result !== "OK") {
-      await unlockSeats(lockedByThisRequest, userId);
+      await unlockSeats(lockedByThisRequest, userId, showId);
       throw new Error(`Seat ${seatId} is locked by another user`);
     }
 
@@ -39,6 +38,10 @@ export async function lockSeats(showId: string, seatIds: string[], userId: strin
 
   await redis.sadd(`lock:user:${userId}`, ...uniqueSeatIds);
   await redis.expire(`lock:user:${userId}`, LOCK_TTL);
+
+  for (const seatId of seatIds) {
+    publishSeatLocked(showId, seatId);
+  }
 
   return { locked: true, expiresIn: LOCK_TTL };
 }
@@ -54,7 +57,7 @@ export async function verifyLock(seatIds: string[], userId: string) {
   return true;
 }
 
-export async function unlockSeats(seatIds: string[], userId: string) {
+export async function unlockSeats(seatIds: string[], userId: string, showId?: string) {
   const uniqueSeatIds = [...new Set(seatIds)];
   if (uniqueSeatIds.length === 0) return;
 
@@ -66,4 +69,10 @@ export async function unlockSeats(seatIds: string[], userId: string) {
 
   multi.srem(`lock:user:${userId}`, ...uniqueSeatIds);
   await multi.exec();
+
+  if (showId) {
+    for (const seatId of seatIds) {
+      publishSeatAvailable(showId, seatId);
+    }
+  }
 }

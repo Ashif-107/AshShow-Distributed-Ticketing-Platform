@@ -7,6 +7,7 @@ exports.lockSeats = lockSeats;
 exports.verifyLock = verifyLock;
 exports.unlockSeats = unlockSeats;
 const client_1 = __importDefault(require("./client"));
+const pub_1 = require("./pub");
 const LOCK_TTL = 300; // 5 minutes
 const UNLOCK_IF_OWNER_SCRIPT = `
   if redis.call("GET", KEYS[1]) == ARGV[1] then
@@ -15,7 +16,6 @@ const UNLOCK_IF_OWNER_SCRIPT = `
   return 0
 `;
 async function lockSeats(showId, seatIds, userId) {
-    void showId;
     const uniqueSeatIds = [...new Set(seatIds)].sort();
     const lockedByThisRequest = [];
     for (const seatId of uniqueSeatIds) {
@@ -26,18 +26,21 @@ async function lockSeats(showId, seatIds, userId) {
             continue;
         }
         if (owner) {
-            await unlockSeats(lockedByThisRequest, userId);
+            await unlockSeats(lockedByThisRequest, userId, showId);
             throw new Error(`Seat ${seatId} is locked by another user`);
         }
         const result = await client_1.default.set(key, userId, "EX", LOCK_TTL, "NX");
         if (result !== "OK") {
-            await unlockSeats(lockedByThisRequest, userId);
+            await unlockSeats(lockedByThisRequest, userId, showId);
             throw new Error(`Seat ${seatId} is locked by another user`);
         }
         lockedByThisRequest.push(seatId);
     }
     await client_1.default.sadd(`lock:user:${userId}`, ...uniqueSeatIds);
     await client_1.default.expire(`lock:user:${userId}`, LOCK_TTL);
+    for (const seatId of seatIds) {
+        (0, pub_1.publishSeatLocked)(showId, seatId);
+    }
     return { locked: true, expiresIn: LOCK_TTL };
 }
 async function verifyLock(seatIds, userId) {
@@ -49,7 +52,7 @@ async function verifyLock(seatIds, userId) {
     }
     return true;
 }
-async function unlockSeats(seatIds, userId) {
+async function unlockSeats(seatIds, userId, showId) {
     const uniqueSeatIds = [...new Set(seatIds)];
     if (uniqueSeatIds.length === 0)
         return;
@@ -59,4 +62,9 @@ async function unlockSeats(seatIds, userId) {
     }
     multi.srem(`lock:user:${userId}`, ...uniqueSeatIds);
     await multi.exec();
+    if (showId) {
+        for (const seatId of seatIds) {
+            (0, pub_1.publishSeatAvailable)(showId, seatId);
+        }
+    }
 }

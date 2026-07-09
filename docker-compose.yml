@@ -10,6 +10,8 @@ services:
       - REDIS_PORT=6379
       - PORT=8000
       - NODE_ENV=development
+      - FRONTEND_URL=http://localhost:3000
+      
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:8000/api/health').then((res) => process.exit(res.ok ? 0 : 1)).catch(() => process.exit(1))"]
       interval: 30s

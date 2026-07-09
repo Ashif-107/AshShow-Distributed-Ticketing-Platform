@@ -1,5 +1,6 @@
 import prisma from "../prisma/client";
 import { getOrSet } from "../redis/cache";
+import redis from "../redis/client";
 
 
 export async function getShowById(showId: string) {
@@ -34,70 +35,43 @@ export async function getShowById(showId: string) {
 export async function getSeatMap(showId: string) {
   return getOrSet(`cache:seats:${showId}`, async () => {
     const show = await prisma.show.findUnique({
-      where: {
-        id: showId,
-      },
-
+      where: { id: showId },
       select: {
-        id: true,
-        venue: true,
-        price: true,
-        startTime: true,
-
+        id: true, venue: true, price: true, startTime: true,
         seats: {
-          orderBy: {
-            seatNumber: "asc",
-          },
-
-          select: {
-            id: true,
-            seatNumber: true,
-            status: true,
-          },
+          orderBy: { seatNumber: "asc" },
+          select: { id: true, seatNumber: true, status: true },
         },
       },
     });
 
     if (!show) return null;
 
-    const groupedRows = new Map<
-      string,
-      {
-        row: string;
-        seats: {
-          id: string;
-          seatNumber: string;
-          status: string;
-        }[];
-      }
-    >();
+    const pipeline = redis.pipeline();
+    show.seats.forEach((seat) => pipeline.exists(`lock:seat:${seat.id}`));
+    const results = await pipeline.exec();
 
-    for (const seat of show.seats) {
-      const row = seat.seatNumber[0];
-
-      if (!groupedRows.has(row)) {
-        groupedRows.set(row, {
-          row,
-          seats: [],
-        });
-      }
-
-      groupedRows.get(row)!.seats.push({
+    const enrichedSeats = show.seats.map((seat, i) => {
+      const isLocked = results?.[i]?.[1] === 1;
+      return {
         id: seat.id,
         seatNumber: seat.seatNumber,
-        status: seat.status,
-      });
+        status: isLocked ? "LOCKED" : seat.status,
+      };
+    });
+
+    const groupedRows = new Map<string, { row: string; seats: typeof enrichedSeats }>();
+    for (const seat of enrichedSeats) {
+      const row = seat.seatNumber[0];
+      if (!groupedRows.has(row)) {
+        groupedRows.set(row, { row, seats: [] });
+      }
+      groupedRows.get(row)!.seats.push(seat);
     }
 
     return {
-      show: {
-        id: show.id,
-        venue: show.venue,
-        price: show.price,
-        startTime: show.startTime,
-      },
-
+      show: { id: show.id, venue: show.venue, price: show.price, startTime: show.startTime },
       rows: Array.from(groupedRows.values()),
     };
-  }, 30);
+  }, 10);
 }
