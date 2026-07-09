@@ -30,7 +30,17 @@ export default function SeatSelector({
     });
 
     useEffect(() => {
-        const socket = io("http://localhost:8000", { withCredentials: true });
+        let socketUrl = "http://localhost:8000";
+        if (process.env.NEXT_PUBLIC_API_URL) {
+            try {
+                socketUrl = new URL(process.env.NEXT_PUBLIC_API_URL).origin;
+            } catch {
+                if (typeof window !== "undefined") {
+                    socketUrl = window.location.origin;
+                }
+            }
+        }
+        const socket = io(socketUrl, { withCredentials: true });
 
         socket.on("connect", () => {
             socket.emit("join:show", showId);

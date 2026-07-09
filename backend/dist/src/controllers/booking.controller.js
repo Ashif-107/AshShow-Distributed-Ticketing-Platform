@@ -8,6 +8,8 @@ exports.getTickets = getTickets;
 const booking_service_1 = require("../services/booking.service");
 const lock_1 = require("../redis/lock");
 const cache_1 = require("../redis/cache");
+const pub_1 = require("../redis/pub");
+const queue_1 = require("../redis/queue");
 async function lockSeatsHandler(req, res) {
     try {
         const userId = req.user.id;
@@ -46,7 +48,16 @@ async function confirmBooking(req, res) {
             });
         }
         const bookings = await (0, booking_service_1.bookingSeats)(userId, showId, seatIds);
-        await (0, lock_1.unlockSeats)(seatIds, userId, showId);
+        await (0, lock_1.unlockSeats)(seatIds, userId);
+        for (const seatId of seatIds) {
+            (0, pub_1.publishSeatBooked)(showId, seatId);
+        }
+        await (0, queue_1.pushToQueue)("booking", {
+            bookingId: bookings[0].id,
+            userId,
+            showId,
+            seatIds,
+        });
         await (0, cache_1.invalidate)(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
         return res.status(201).json({ bookings });
     }

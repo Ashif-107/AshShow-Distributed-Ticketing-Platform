@@ -49,7 +49,7 @@ export async function confirmBooking(req: Request, res: Response) {
 
     const bookings = await bookingSeats(userId, showId, seatIds);
 
-    await unlockSeats(seatIds, userId, showId);
+    await unlockSeats(seatIds, userId);
     for (const seatId of seatIds) {
       publishSeatBooked(showId, seatId);
     }

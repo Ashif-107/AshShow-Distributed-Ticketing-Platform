@@ -14,14 +14,22 @@ const booking_route_1 = __importDefault(require("./routes/booking.route"));
 const error_middleware_1 = require("./middleware/error.middleware");
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
-const allowedOrigins = [
-    "http://localhost:3000",
-    process.env.FRONTEND_URL
-].filter(Boolean);
+const allowedOrigins = ["http://localhost:3000"];
+const rawUrl = process.env.FRONTEND_URL;
+if (rawUrl) {
+    try {
+        const url = new URL(rawUrl);
+        allowedOrigins.push(url.origin);
+    }
+    catch {
+        allowedOrigins.push(rawUrl.replace(/\/$/, ""));
+    }
+}
+const uniqueOrigins = [...new Set(allowedOrigins)];
 app.use((0, cors_1.default)({
     origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || allowedOrigins.includes(origin)) {
+        if (!origin || uniqueOrigins.includes(origin)) {
             callback(null, true);
         }
         else {

@@ -24,9 +24,21 @@ async function connectDB() {
 }
 connectDB();
 const server = http_1.default.createServer(app_1.default);
+const allowedOrigins = ["http://localhost:3000"];
+const rawUrl = process.env.FRONTEND_URL;
+if (rawUrl) {
+    try {
+        const url = new URL(rawUrl);
+        allowedOrigins.push(url.origin);
+    }
+    catch {
+        allowedOrigins.push(rawUrl.replace(/\/$/, ""));
+    }
+}
+const uniqueOrigins = [...new Set(allowedOrigins)];
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || "http://localhost:3000",
+        origin: uniqueOrigins,
         credentials: true,
     },
 });

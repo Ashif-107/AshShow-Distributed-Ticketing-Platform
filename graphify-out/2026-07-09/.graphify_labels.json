@@ -32,6 +32,5 @@
   "30": "prisma.config.ts",
   "31": "booking.schema.ts",
   "32": "booking.controller.ts",
-  "33": "app.ts",
-  "34": "show.controller.ts"
+  "33": "app.ts"
 }
