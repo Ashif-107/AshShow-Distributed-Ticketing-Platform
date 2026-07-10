@@ -9,7 +9,11 @@ import app from "./app";
 
 import { setupSocketHandlers } from "./socket";
 import { setupPubSub } from "./pubsub";
-import { startWorker } from "./queue/worker";
+import { getChannel } from "./rabbitmq/connection";
+import { setupRabbitMQ } from "./rabbitmq/setup";
+import { startTicketConsumer } from "./rabbitmq/consumers/ticketConsumer";
+import { startNotificationConsumer } from "./rabbitmq/consumers/notificationConsumer";
+import { startAnalyticsConsumer } from "./rabbitmq/consumers/analyticsConsumer";
 
 const PORT = process.env.PORT || 8000;
 
@@ -51,7 +55,20 @@ const io = new SocketIOServer(server, {
 
 setupSocketHandlers(io);
 setupPubSub(io);
-startWorker();
+
+let rabbitMQReady = false;
+(async () => {
+  try {
+    const channel = await getChannel();
+    await setupRabbitMQ(channel);
+    await startTicketConsumer(channel);
+    await startNotificationConsumer(channel);
+    await startAnalyticsConsumer(channel);
+    rabbitMQReady = true;
+  } catch (err) {
+    console.error("❌ RabbitMQ setup failed:", err);
+  }
+})();
 
 
 server.listen(PORT, () =>{

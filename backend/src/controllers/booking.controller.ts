@@ -3,7 +3,8 @@ import { getAllTickets, bookingSeats } from "../services/booking.service";
 import { lockSeats, verifyLock, unlockSeats } from "../redis/lock";
 import { invalidate } from "../redis/cache";
 import { publishSeatBooked } from "../redis/pub";
-import { pushToQueue } from "../redis/queue";
+import { publishBookingCreated } from "../rabbitmq/publisher";
+import prisma from "../prisma/client";
 
 export async function lockSeatsHandler(req: Request, res: Response) {
   try {
@@ -54,12 +55,34 @@ export async function confirmBooking(req: Request, res: Response) {
       publishSeatBooked(showId, seatId);
     }
 
-    await pushToQueue("booking", {
-      bookingId: bookings[0].id,
-      userId,
-      showId,
-      seatIds,
-    });
+    const [userRecord, showRecord] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: userId },
+        select: { name: true, email: true },
+      }),
+      prisma.show.findUnique({
+        where: { id: showId },
+        include: { event: { select: { artist: true, tourName: true } } },
+      }),
+    ]);
+
+    if (userRecord && showRecord) {
+      await publishBookingCreated({
+        bookingId: bookings[0].id,
+        userId,
+        userEmail: userRecord.email,
+        userName: userRecord.name,
+        showId,
+        artist: showRecord.event.artist,
+        tourName: showRecord.event.tourName,
+        venue: showRecord.venue,
+        startTime: showRecord.startTime.toISOString(),
+        price: showRecord.price,
+        seatNumbers: bookings.map((b: any) => b.seat?.seatNumber).filter(Boolean),
+        bookedAt: (bookings[0] as any).bookedAt?.toISOString?.() || new Date().toISOString(),
+      });
+    }
+
     await invalidate(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
 
     return res.status(201).json({ bookings });
