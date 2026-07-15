@@ -5,6 +5,7 @@ const redis = new Redis({
   port: Number(process.env.REDIS_PORT) || 6379,
   connectTimeout: 5000,        // ← fail fast if Redis is unreachable
   lazyConnect: true,           // ← don't block server boot
+  tls: {},                          // ← required for ElastiCache encryption in transit
   retryStrategy: (times) => Math.min(times * 50, 2000),
 });
 
