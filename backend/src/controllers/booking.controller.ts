@@ -55,34 +55,32 @@ export async function confirmBooking(req: Request, res: Response) {
       publishSeatBooked(showId, seatId);
     }
 
-    const [userRecord, showRecord] = await Promise.all([
-      prisma.user.findUnique({
-        where: { id: userId },
-        select: { name: true, email: true },
-      }),
-      prisma.show.findUnique({
-        where: { id: showId },
-        include: { event: { select: { artist: true, tourName: true } } },
-      }),
-    ]);
-
-    if (userRecord && showRecord) {
-      await publishBookingCreated({
-        bookingId: bookings[0].id,
-        userId,
-        userEmail: userRecord.email,
-        userName: userRecord.name,
-        showId,
-        artist: showRecord.event.artist,
-        tourName: showRecord.event.tourName,
-        venue: showRecord.venue,
-        startTime: showRecord.startTime.toISOString(),
-        price: showRecord.price,
-        seatNumbers: bookings.map((b: any) => b.seat?.seatNumber).filter(Boolean),
-        bookedAt: (bookings[0] as any).bookedAt?.toISOString?.() || new Date().toISOString(),
-      });
+    // Non-fatal: RabbitMQ publish failure shouldn't lose the booking
+    try {
+      const [userRecord, showRecord] = await Promise.all([
+        prisma.user.findUnique({ where: { id: userId }, select: { name: true, email: true } }),
+        prisma.show.findUnique({ where: { id: showId }, include: { event: { select: { artist: true, tourName: true } } } }),
+      ]);
+      if (userRecord && showRecord) {
+        await publishBookingCreated({
+          bookingId: bookings[0].id,
+          userId,
+          userEmail: userRecord.email,
+          userName: userRecord.name,
+          showId,
+          artist: showRecord.event.artist,
+          tourName: showRecord.event.tourName,
+          venue: showRecord.venue,
+          startTime: showRecord.startTime.toISOString(),
+          price: showRecord.price,
+          seatNumbers: bookings.map((b: any) => b.seat?.seatNumber).filter(Boolean),
+          bookedAt: (bookings[0] as any).bookedAt?.toISOString?.() || new Date().toISOString(),
+        });
+      }
+    } catch (err) {
+      console.error("⚠️ RabbitMQ publish failed (booking already saved):", err);
     }
-
+    
     await invalidate(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
 
     return res.status(201).json({ bookings });
