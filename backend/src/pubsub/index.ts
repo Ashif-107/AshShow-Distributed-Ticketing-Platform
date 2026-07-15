@@ -5,6 +5,9 @@ export function setupPubSub(io: SocketIOServer) {
   const sub = new Redis({
     host: process.env.REDIS_HOST || "localhost",
     port: Number(process.env.REDIS_PORT) || 6379,
+    tls: {},
+    connectTimeout: 5000,
+    retryStrategy: (times) => Math.min(times * 50, 2000),
   });
 
   sub.on("connect", () => {
