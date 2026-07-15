@@ -2,8 +2,9 @@ import prisma from "../prisma/client";
 import { getOrSet, invalidate } from "../redis/cache";
 
 export async function getAllEvents() {
+  console.log("1. Enter getAllEvents");
   return getOrSet("cache:events", async () => {
-
+    console.log("2. Inside getOrSet callback");
     const events = await prisma.event.findMany({
       include: {
         shows: {
@@ -29,6 +30,8 @@ export async function getAllEvents() {
         },
       },
     });
+
+    console.log("3. Prisma query finished");
 
     return events.map((event) => ({
       id: event.id,

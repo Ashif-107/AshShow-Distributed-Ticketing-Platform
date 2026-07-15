@@ -5,13 +5,23 @@ export async function getOrSet<T>(
   fetchFn: () => Promise<T>,
   ttl: number = 60
 ): Promise<T> {
+  console.log("1. Redis GET");
   const cached = await redis.get(key);
-  if (cached) return JSON.parse(cached);
+  console.log("2. Redis GET completed");
+
+  if (cached) {
+    console.log("3. Cache hit");
+    return JSON.parse(cached);
+  }
+  console.log("4. Cache miss");
 
   const data = await fetchFn();
+  console.log("5. Prisma callback completed");
 
   if (data) {
+    console.log("6. Redis SET");
     await redis.set(key, JSON.stringify(data), "EX", ttl);
+    console.log("7. Redis SET completed");
   }
 
   return data;
