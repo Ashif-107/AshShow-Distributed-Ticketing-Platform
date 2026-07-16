@@ -1,0 +1,9 @@
+{
+  "name": "ashshow-stress-tests",
+  "private": true,
+  "scripts": {
+    "browse": "k6 run browse-test.js",
+    "booking": "k6 run --env SHOW_ID=<your-show-id> booking-test.js",
+    "soak": "k6 run --duration 30m browse-test.js"
+  }
+}
