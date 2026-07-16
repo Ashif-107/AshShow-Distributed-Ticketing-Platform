@@ -1,0 +1,19 @@
+prometheus.scrape "default" {
+  targets = [
+    { "__address__" = "localhost:8000", "job" = "ashshow-backend" },
+  ]
+  metrics_path    = "/api/metrics"
+  scrape_interval = "15s"
+  forward_to = [prometheus.remote_write.metrics_hosted_prometheus.receiver]
+}
+
+prometheus.remote_write "metrics_hosted_prometheus" {
+  endpoint {
+    name = "hosted-prometheus"
+    url  = "https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push"
+    basic_auth {
+      username = sys.env("GRAFANA_PROMETHEUS_USERNAME")
+      password = sys.env("GRAFANA_PROMETHEUS_PASSWORD")
+    }
+  }
+}
