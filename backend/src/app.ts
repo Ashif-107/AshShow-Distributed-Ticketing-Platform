@@ -10,6 +10,8 @@ import bookingRoutes from "./routes/booking.route"
 
 import { errorHandler } from "./middleware/error.middleware";
 
+import { metricsMiddleware } from "./monitoring/middleware";
+import prometheus from "prom-client";
 
 const app = express()
 
@@ -41,16 +43,24 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/api/health", (req,res) => {
-    res.json({
-        message: "Backend is Running"
-    })
+app.use(metricsMiddleware);
+
+
+app.get("/api/metrics", async (req, res) => {
+  res.set("Content-Type", prometheus.register.contentType);
+  res.end(await prometheus.register.metrics());
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    message: "Backend is Running"
+  })
 })
 
-app.get("/health", (req,res) => {
-    res.json({
-        message: "Backend is Running"
-    })
+app.get("/health", (req, res) => {
+  res.json({
+    message: "Backend is Running"
+  })
 })
 
 app.use("/api/auth", authRoutes);

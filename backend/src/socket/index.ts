@@ -1,7 +1,9 @@
 import { Server as SocketIOServer, Socket } from "socket.io";
+import { activeConnections } from "../monitoring/metrics";
 
 export function setupSocketHandlers(io: SocketIOServer) {
   io.on("connection", (socket: Socket) => {
+    activeConnections.inc();
     console.log(`🔌 Client connected: ${socket.id}`);
 
     socket.on("join:show", (showId: string) => {
@@ -16,6 +18,7 @@ export function setupSocketHandlers(io: SocketIOServer) {
 
     socket.on("disconnect", () => {
       console.log(`🔌 Client disconnected: ${socket.id}`);
+      activeConnections.dec();
     });
   });
 }

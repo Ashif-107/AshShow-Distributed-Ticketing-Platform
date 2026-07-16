@@ -5,6 +5,7 @@ import { invalidate } from "../redis/cache";
 import { publishSeatBooked } from "../redis/pub";
 import { publishBookingCreated } from "../rabbitmq/publisher";
 import prisma from "../prisma/client";
+import { bookingsTotal, lockContentionTotal } from "../monitoring/metrics";
 
 export async function lockSeatsHandler(req: Request, res: Response) {
   try {
@@ -15,6 +16,8 @@ export async function lockSeatsHandler(req: Request, res: Response) {
     return res.json(result);
   } catch (err: any) {
     if (err.message?.startsWith("Seat")) {
+      lockContentionTotal.inc();
+
       return res.status(409).json({ message: err.message });
     }
     console.error("Lock error:", err);
@@ -43,12 +46,15 @@ export async function confirmBooking(req: Request, res: Response) {
 
     const isValid = await verifyLock(seatIds, userId);
     if (!isValid) {
+      lockContentionTotal.inc();
       return res.status(409).json({
         message: "Seat lock expired or seat taken by another user. Please try again.",
       });
     }
 
+
     const bookings = await bookingSeats(userId, showId, seatIds);
+    bookingsTotal.inc({ showId });
 
     await unlockSeats(seatIds, userId);
     for (const seatId of seatIds) {
@@ -80,7 +86,7 @@ export async function confirmBooking(req: Request, res: Response) {
     } catch (err) {
       console.error("⚠️ RabbitMQ publish failed (booking already saved):", err);
     }
-    
+
     await invalidate(`cache:seats:${showId}`, `cache:show:${showId}`, "cache:events");
 
     return res.status(201).json({ bookings });

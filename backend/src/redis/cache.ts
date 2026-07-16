@@ -1,3 +1,4 @@
+import { cacheHits, cacheMisses } from "../monitoring/metrics";
 import redis from "./client";
 
 export async function getOrSet<T>(
@@ -10,9 +11,12 @@ export async function getOrSet<T>(
   console.log("2. Redis GET completed");
 
   if (cached) {
+    cacheHits.inc({ key });
     console.log("3. Cache hit");
     return JSON.parse(cached);
   }
+
+  cacheMisses.inc({ key });
   console.log("4. Cache miss");
 
   const data = await fetchFn();
